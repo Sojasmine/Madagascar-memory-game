@@ -5,9 +5,10 @@
 
 html {
 	min-height: 100vh;
+	cursor: url("assets/cursor/Lemur.cur"), auto;
 	/* max-height: 600px; */
 	width: 1000px;
-	background-color: hsla(200,40%,30%,.4);
+	background-color: rgba(179, 87, 197, 0.4);
 	background-image:	
    url('https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png');
     
@@ -46,15 +47,23 @@ html {
 
     body {
         margin: 0;
+		height: 100vh;
+		width: 100%;
+		
 	}
-
     .title {
-		color: #ff6d00;
+		color: green;
 		font-family: Horn, serif;
 		font-weight: normal;
 		text-align: center;
 		font-size: 4em;
-		
+
+	}
+
+	.game-info {
+		font-family: Neucha, serif;
+		color: blue;
+		font-size: 2em;
 	}
 
 	.game-info-container {
@@ -62,38 +71,66 @@ html {
 		display: flex;
 		justify-content: space-between;
 		
-	}
 
-	.game-info {
-		font-family: Neucha, serif;
-		color: blueviolet;
-		font-size: 2em;
 	}
+     .game-container {
+		 display: grid;
+		 justify-content: center;
+		 perspective: 500px;
+	 }
+	
+	.memory-game {
+		width: 540px;
+		height: 440px;
+		margin: auto;
+		display: flex;
+		flex-wrap: wrap;
+		perspective: 1000px;
+		
+	  }
+    
+	.memory-game.visible .back-face {
+		  transform: rotateY(-180deg);
 
-	.game-container {
-		display: grid;
-		grid-template-columns: repeat(4, auto);
-		grid-gap: 10px;
-		margin: 50px;
-        justify-content: center;
-	}
+	  }
+
+	
+	.memory-game.visible .front-face {
+		  transform: rotateY(0);
+	  }
 
 	.memory-card {
+		width: calc(25% - 10px);
+		height: calc(33.333% - 10px);
+		margin: 4px;
 		position: relative;
-		background-color: blueviolet;
-		height: 195px;
-		width: 145px;
-		}
+		transform: scale(1);
+		transform-style: preserve-3d;
+		transition: transform .5s;
+		border: 0.5rem outset pink;
+	  }
 
-	.card-face {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		padding: 2px;
-		position: absolute;
-		
-		backface-visibility: hidden;
-		justify-content: center;
-		
-		
-	}
+	.memory-card:active {
+       transform: scale(0.97);
+       transition: transform .2s;
+      }
+
+	
+
+    .front-face,
+    .back-face {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      padding: 2px;
+      position: absolute;
+      border-radius: 5px;
+	  overflow: hidden;
+      background: #1C7CCC;
+      backface-visibility: hidden; 
+	  transition: transform 500ms ease-in-out;
+     }
+
+	 
+	  
+	  

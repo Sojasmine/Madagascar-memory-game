@@ -6,7 +6,7 @@
 html {
 	min-height: 100vh;
 	/* max-height: 600px; */
-	width: 100vh;
+	width: 1000px;
 	background-color: hsla(200,40%,30%,.4);
 	background-image:	
    url('https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png');
@@ -40,26 +40,60 @@ html {
 
     
     * {
+		
         box-sizing: border-box;
     }
 
     body {
         margin: 0;
-        
-    }
+	}
 
     .title {
-        color: #cc0066;
-        font-family: Horn, serif;
-        font-weight: normal;
-        text-align: center;
-        font-size: 4em;
-    }
+		color: #ff6d00;
+		font-family: Horn, serif;
+		font-weight: normal;
+		text-align: center;
+		font-size: 4em;
+		
+	}
 
+	.game-info-container {
+		grid-column: 1 / -1;
+		display: flex;
+		justify-content: space-between;
+		
+	}
 
-    .game-info {
-        font-family: Neucha;
-        color: purple;
-        font-size: 2em;
+	.game-info {
+		font-family: Neucha, serif;
+		color: blueviolet;
+		font-size: 2em;
+	}
 
-    }
+	.game-container {
+		display: grid;
+		grid-template-columns: repeat(4, auto);
+		grid-gap: 10px;
+		margin: 50px;
+        justify-content: center;
+	}
+
+	.memory-card {
+		position: relative;
+		background-color: blueviolet;
+		height: 195px;
+		width: 145px;
+		}
+
+	.card-face {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		padding: 2px;
+		position: absolute;
+		
+		backface-visibility: hidden;
+		justify-content: center;
+		
+		
+	}

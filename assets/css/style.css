@@ -5,10 +5,10 @@
 
 html {
 	min-height: 100vh;
-	cursor: url("assets/cursor/Lemur.cur"), auto;
 	/* max-height: 600px; */
 	width: 1000px;
 	background-color: rgba(179, 87, 197, 0.4);
+	
 	background-image:	
    url('https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png');
     
@@ -98,6 +98,8 @@ html {
 	.memory-game.visible .front-face {
 		  transform: rotateY(0);
 	  }
+    
+
 
 	.memory-card {
 		width: calc(25% - 10px);
@@ -115,7 +117,35 @@ html {
        transition: transform .2s;
       }
 
-	
+	.overlay-text {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+		color: red;
+		font-family: Horn, serif;
+	}
+
+	.overlay-text.visible {
+		display: flex;
+		animation: overlay-grow 500ms forwards;
+	}
+
+	@keyframes overlay-grow {
+		from {
+			background-color: rgba(0, 0, 0, 0);
+			font-size: 0;
+		}
+		to {
+			background-color: rgba(0, 0, 0, .8);
+			font-size: 10em;
+		}
+	}
 
     .front-face,
     .back-face {

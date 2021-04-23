@@ -117,42 +117,7 @@ html {
        transition: transform .2s;
       }
 
-	.overlay-text {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 100;
-		color: red;
-		font-family: Horn, serif;
-	}
-
-	.overlay-text-small {
-		font-size: .3em;
-	}
-
-	.overlay-text.visible {
-		display: flex;
-		flex-direction: column;
-		animation: overlay-grow 500ms forwards;
-	}
-
-	@keyframes overlay-grow {
-		from {
-			background-color: rgba(0, 0, 0, 0);
-			font-size: o;
-		}
-		to {
-			background-color: rgba(0, 0, 0, .8);
-			font-size: 7em;
-		}
-	}
-
-    .front-face,
+	.front-face,
     .back-face {
       width: 100%;
       height: 100%;

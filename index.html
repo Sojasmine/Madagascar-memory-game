@@ -6,31 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/script/main.js" async></script>
-    <scrip
     <title>Memory Game</title>
     
 </head>
 <body>
   <!-- the page title-->
      <h1 class="title">Madagascar Memory Game</h1>
-    <!--overlay text-->
-  <div class="overlay-text visible">
-    Click to start
-  </div>
-  <div id="you-loose-text" class="overlay-text">
-    You loose <!--add a sad icon emoij here-->
-    <span class="overlay-text-small">Play again</span>
-  </div>
-  <div id="you-win-text" class="overlay-text">
-    You win ! <!-- add a medal icon here-->
-    <span class="overlay-text-small">Play again</span><!--add level1,2,3 links here-->
-  </div>
-  <!--game container-->
- <div class="game-container">
+    <div class="row">
+      <div class="col">
+        <label>Level 1</label>
+        <input type="radio" name="level" value="easy" checked />
+      </div>
+      <div class="col">
+        <label>Level 2</label>
+        <input type="radio" name="level" value="medium" checked />
+      </div>
+      <div class="col">
+        <label>Level 3</label>
+        <input type="radio" name="level" value="hard" checked />
+      </div>
+      <button class="btn btn-primary" onclick="startGame();">Start Game</button>
+    </div>
+    <!--game container-->
+    <div class="game-container">
         <div class="game-info-container">
             <div class="game-info">
               Time<span id="time-remaining"> 100</span><!--change time to a timer icom-->
@@ -39,58 +40,9 @@
               Flips<span id="flips"> 0</span>
              </div>
         </div>
-      
-   <div class="memory-game">
-     <div class="memory-card" data-framework="cameleon">
-       <img class="front-face" src="assets/images/cameleon.jpg" alt="Cameleon"/>
-       <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-      </div>
-      <div class="memory-card" data-framework="cameleon">
-        <img class="front-face" src="assets/images/cameleon.jpg" alt="Cameleon"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="baobab">
-        <img class="front-face" src="assets/images/baobab.jpg" alt="Baobab"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="baobab">
-        <img class="front-face" src="assets/images/baobab.jpg" alt="Baobab"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="fosa">
-        <img class="front-face" src="assets/images/fosa.jpg" alt="Fosa"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="fosa">
-        <img class="front-face" src="assets/images/fosa.jpg" alt="Fosa"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="maki">
-        <img class="front-face" src="assets/images/maki.jpg" alt="Maki"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="maki">
-        <img class="front-face" src="assets/images/maki.jpg" alt="Maki"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="papegoja">
-        <img class="front-face" src="assets/images/papegoja.jpg" alt="Papegoja"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="papegoja">
-        <img class="front-face" src="assets/images/papegoja.jpg" alt="Papegoja"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="giraf">
-        <img class="front-face" src="assets/images/giraf.jpg" alt="Giraf"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       <div class="memory-card" data-framework="giraf">
-        <img class="front-face" src="assets/images/giraf.jpg" alt="Giraf"/>
-        <img class="back-face" src="assets/images/lemur7.jpg" alt="Lemur"/>
-       </div>
-       </div>
-      </div>
+       <div id="ImagesGrid" class="memory-game"></div>
+        
+        </div>
       <!--footer and social links-->
    
 </body>

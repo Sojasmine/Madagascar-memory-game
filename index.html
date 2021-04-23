@@ -9,18 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
    
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/script/main.js" async></script>
+    <scrip
     <title>Memory Game</title>
     
 </head>
 <body>
+  <!-- the page title-->
      <h1 class="title">Madagascar Memory Game</h1>
+    <!--overlay text-->
   <div class="overlay-text visible">
-    click to start
+    Click to start
   </div>
+  <div id="you-loose-text" class="overlay-text">
+    You loose <!--add a sad icon emoij here-->
+    <span class="overlay-text-small">Play again</span>
+  </div>
+  <div id="you-win-text" class="overlay-text">
+    You win ! <!-- add a medal icon here-->
+    <span class="overlay-text-small">Play again</span><!--add level1,2,3 links here-->
+  </div>
+  <!--game container-->
  <div class="game-container">
         <div class="game-info-container">
             <div class="game-info">
-              Time<span id="time-remaining"> 100</span>
+              Time<span id="time-remaining"> 100</span><!--change time to a timer icom-->
             </div>
             <div class="game-info">
               Flips<span id="flips"> 0</span>
@@ -78,6 +91,7 @@
        </div>
        </div>
       </div>
-   <script src="assets/script/main.js"></script>
+      <!--footer and social links-->
+   
 </body>
 </html>

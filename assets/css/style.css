@@ -6,7 +6,7 @@
 html {
 	min-height: 100vh;
 	/* max-height: 600px; */
-	width: 1000px;
+	width: 100%;
 	background-color: rgba(179, 87, 197, 0.4);
 	
 	background-image:	
@@ -131,19 +131,24 @@ html {
 		font-family: Horn, serif;
 	}
 
+	.overlay-text-small {
+		font-size: .3em;
+	}
+
 	.overlay-text.visible {
 		display: flex;
+		flex-direction: column;
 		animation: overlay-grow 500ms forwards;
 	}
 
 	@keyframes overlay-grow {
 		from {
 			background-color: rgba(0, 0, 0, 0);
-			font-size: 0;
+			font-size: o;
 		}
 		to {
 			background-color: rgba(0, 0, 0, .8);
-			font-size: 10em;
+			font-size: 7em;
 		}
 	}
 
@@ -162,5 +167,4 @@ html {
      }
 
 	 
-	  
-	  
+    

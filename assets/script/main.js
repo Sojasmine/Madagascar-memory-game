@@ -128,15 +128,18 @@ hard = [{
 }];
 
 
+
 function startGame() {
-    // Check and get the value of the radiobutton selected
+  // Check and get the value of the radiobutton selected
+  alert('Please select a level!');
+  document.getElementsByClassName('Please select a level!').checked = true;
     level = GetSelectedLevel();
     switch (level) {
         case "easy":
             BuildGrid(8, easy);
             break;
         case "medium":
-            BuildGrid(12), medium;
+            BuildGrid(12, medium);
             break;
         case "hard":
             BuildGrid(16, hard);
@@ -145,30 +148,11 @@ function startGame() {
             break;
     }
 
-}
-
-function startGame() {
-    // Check and get the value of the radiobutton selected
-    level = GetSelectedLevel();
-    switch (level) {
-        case "easy":
-            BuildGrid(8, easy);
-            break;
-        case "medium":
-            BuildGrid(12), medium;
-            break;
-        case "hard":
-            BuildGrid(16, hard);
-            break;
-        default:
-            break;
-    }
-
-    if (levelCase === "easy") {
+    if (switchCase === "easy") {
         totalTime = 120;
-    } else if (levelCase === "medium") {
+    } else if (switchCase === "medium") {
         totalTime = 90;
-    } else if (levelCase === "hard") {
+    } else if (switchCase === "hard") {
         totalTime = 60;
     }
 

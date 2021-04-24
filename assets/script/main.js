@@ -6,6 +6,7 @@
 //     ready();
 // }
 
+
 let defaultAlt = "Lemur",
     defaultImg = "assets/images/lemur7.jpg",
 easy = [{
@@ -89,11 +90,11 @@ hard = [{
     src: "assets/images/floodhest.jpg",
     alt: "Floodhest",
 },{
-    src: "assets/images/pinguin.jpg",
-    alt: "Pinguin"
+    src: "assets/images/baobab.jpg",
+    alt: "Baobab"
 },{
-    src: "assets/images/pinguin.jpg",
-    alt: "Pinguin",
+    src: "assets/images/baobab.jpg",
+    alt: "Baobab",
 },{
     src: "assets/images/floodhest.jpg",
     alt: "Floodhest"
@@ -128,36 +129,51 @@ hard = [{
 
 
 function startGame() {
-    
-    //Check and get the value of the radiobutton
-    level = getSelectedLevel();
-    
-        switch (level) {
+    // Check and get the value of the radiobutton selected
+    level = GetSelectedLevel();
+    switch (level) {
         case "easy":
             BuildGrid(8, easy);
             break;
-
         case "medium":
-            BuildGrid(12, medium);
+            BuildGrid(12), medium;
             break;
-
-        case"hard":
+        case "hard":
             BuildGrid(16, hard);
-
+            break;
         default:
             break;
     }
-    
-    if (gameCase === "easy") {
-        totalTime = 120;
-    } else if (gameCase === "medium") {
-        totalTime = 90;
-    } else if (gameCase === "hard") {
-        totalTime = 60;
-    }
+
 }
 
-function getSelectedLevel() {
+function startGame() {
+    // Check and get the value of the radiobutton selected
+    level = GetSelectedLevel();
+    switch (level) {
+        case "easy":
+            BuildGrid(8, easy);
+            break;
+        case "medium":
+            BuildGrid(12), medium;
+            break;
+        case "hard":
+            BuildGrid(16, hard);
+            break;
+        default:
+            break;
+    }
+
+    if (levelCase === "easy") {
+        totalTime = 120;
+    } else if (levelCase === "medium") {
+        totalTime = 90;
+    } else if (levelCase === "hard") {
+        totalTime = 60;
+    }
+
+}
+function GetSelectedLevel() {
     let selectedLevel = null,
         ele = document.getElementsByName('level');
     for (i = 0; i < ele.length; i++) {
@@ -166,8 +182,6 @@ function getSelectedLevel() {
     }
     return selectedLevel;
 }
-
-
 function BuildGrid(totalBoxes, imgArray) {
     gridContent = "";
     // Loop through the Images Array passed in
@@ -181,25 +195,3 @@ function BuildGrid(totalBoxes, imgArray) {
     // Append the generated HTML to the body of the container.
     document.getElementById("ImagesGrid").innerHTML = gridContent;
 }
-//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-  
-    return array;
-  }
-  
-  

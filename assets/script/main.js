@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-
+// define function
 // if (document.readyState === 'loading') {
 //     document.addEventListener('DOMcontentLoaded', ready());
 // } else {
@@ -127,12 +127,40 @@ hard = [{
     alt: "Floodhest",
 }];
 
+//Define variable and get the DOM
 
+let row = document.querySelector(".row");
+let btnPrimary = document.querySelector(".btn.primary");
+let imagesGrid = document.querySelector("ImagesGrid");
+let timer = document.querySelector(".time-remaining");
+let moves = 0;
+let matched = []
+let defaultAltId = [];
+let defaultAltSelected = [];
+let clicks= 0;
+
+
+//Shuffle function
+function shuffle(array) {
+    let currentIndex = array.length, temporaryValue, radomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.radom() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+// Start game function
 
 function startGame() {
   // Check and get the value of the radiobutton selected
   alert('Please select a level!');
   document.getElementsByClassName('Please select a level!').checked = true;
+  
     level = GetSelectedLevel();
     switch (level) {
         case "easy":
@@ -171,6 +199,7 @@ function BuildGrid(totalBoxes, imgArray) {
     // Loop through the Images Array passed in
     imgArray.forEach((img) => {
         // Generate the HTML needed
+        
         gridContent += `<div class="memory-card" data-framework="${img.alt}">
                 <img class="front-face" src="${img.src}" alt="${img.alt}" />
                 <img class="back-face" src="${defaultImg}" alt="${defaultAlt}" />

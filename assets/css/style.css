@@ -77,7 +77,8 @@ html {
 		 display: grid;
 		 justify-content: center;
 		 perspective: 500px;
-	 }
+		}
+	
 	
 	.memory-game {
 		width: 540px;
@@ -105,7 +106,7 @@ html {
        transition: transform .2s;
       }
 
-	.memory-card.flip {
+	.memory-card {
 		transform: rotateY(180deg);
 	}
 
@@ -123,7 +124,5 @@ html {
 	  transition: transform 500ms ease-in-out;
      }
 
-	 .front-face {
-	 transform: rotateY(180deg);
-	 }
-    
+	
+	

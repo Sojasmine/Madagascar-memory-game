@@ -148,11 +148,11 @@ function startGame() {
             break;
     }
 
-    if (switchCase === "easy") {
+    if (level === "easy") {
         totalTime = 120;
-    } else if (switchCase === "medium") {
+    } else if (level === "medium") {
         totalTime = 90;
-    } else if (switchCase === "hard") {
+    } else if (level === "hard") {
         totalTime = 60;
     }
 

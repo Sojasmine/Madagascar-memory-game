@@ -132,15 +132,17 @@ hard = [{
 let row = document.querySelector(".row");
 let btnPrimary = document.querySelector(".btn.primary");
 let imagesGrid = document.querySelector("ImagesGrid");
-let timer = document.querySelector(".time-remaining");
+let timer = document.querySelector("time-remaining");
 let moves = 0;
 let matched = []
 let defaultAltId = [];
 let defaultAltSelected = [];
-let clicks= 0;
+let clicks = 0;
+let totalTime = 0;
 
 
 //Shuffle function
+
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, radomIndex;
 
@@ -153,13 +155,82 @@ function shuffle(array) {
     }
     return array;
 }
+// Flip function, code snipped from https://medium.com/free-code-camp/vanilla-javascript-tutorial-build-a-memory-game-in-30-minutes-e542c4447eae
+
+const cards = document.querySelectorAll(".memory-card");
+
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
+
+function flipCard() {
+  if (lockBoard) return;
+  if (this === firstCard) return;
+  this.classList.add("flip");
+
+  if (!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+    return;
+  }
+
+  secondCard = this;
+
+  checkForMatch();
+}
+
+function checkForMatch() {
+  if (firstCard.dataset.framework === secondCard.dataset.framework) {
+    disableCards();
+    return;
+  }
+
+  unflipCards();
+}
+
+function disableCards() {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+
+  resetBoard();
+}
+
+function unflipCards() {
+  lockBoard = true;
+  setTimeout(
+    () => {
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+
+      resetBoard();
+    },
+
+    1500
+  );
+}
+
+function resetBoard() {
+  [hasFlippedCard, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
+}
+
+(function shuffle() {
+  cards.forEach((card) => {
+    let ramdomPos = Math.floor(Math.random() * 12);
+    card.style.order = ramdomPos;
+  });
+})();
+
+cards.forEach((card) => card.addEventListener("click", flipCard));
 
 // Start game function
 
 function startGame() {
   // Check and get the value of the radiobutton selected
-  alert('Please select a level!');
-  document.getElementsByClassName('Please select a level!').checked = true;
+  alert('1234');
+  document.getElementsByClassName('.row').checked = true;
+
+  const shuffleDefaultImg = document
   
     level = GetSelectedLevel();
     switch (level) {
@@ -194,6 +265,11 @@ function GetSelectedLevel() {
     }
     return selectedLevel;
 }
+
+
+// Function time
+
+
 function BuildGrid(totalBoxes, imgArray) {
     gridContent = "";
     // Loop through the Images Array passed in

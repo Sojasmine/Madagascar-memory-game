@@ -141,110 +141,87 @@ let defaultAltSelected = [];
 
 
 // Code snippet from  PortExe https://www.youtube.com/watch?v=3uuQ3g92oPQ&t=585s
-
-class MemoryGame {
-      constructor(totalTime, cards) {
-          this.cardsArray = cards;
-          this.totalTime = totalTime;
-          this.timeRemaining = totalTime;
-          this.timer = document.getElementById('time-remaining');
-          this.ticker = document.getElementById('flips');
-
-      }
-
-}
-
-
-//Shuffle function
-
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, radomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.radom() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+class MemoryCard {
+    constructor (totalTime, cards) {
+      this.cardsArray = cards;
+      this.totalTime = totalTime;
+      this.timeRemaining = totalTime;
+      this.timer = document.getElementById("time-remaining");
+      this.ticker = document.getElementById("flips");
+     
     }
-    return array;
-}
-
-
-// Flip function, code snipped from https://medium.com/free-code-camp/vanilla-javascript-tutorial-build-a-memory-game-in-30-minutes-e542c4447eae
-
-const cards = document.querySelectorAll(".memory-card");
-
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
-
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
-  this.classList.add("flip");
+    startGame() {
+      this.cardToCheck = null;
+      this.totalClicks = 0;
+      this.timeRemaining = this.totalTime;
+      this.matchedCards = [];
+      this.busy = true;
+      setTimeout(() => {
+        this.shuffleCards();
+        this.countDown = this.startCountDown();
+        this.busy = false;
+      }, 500);
+  this.hideCards();
+  this.timer.innerText = this.timeRemaining;
+  this.ticker.innerText = this.totalClicks;
+   } 
+    hideCards() {
+      this.cardsArray.forEach(card => {
+        card.classList.remove("visible");
+        card.classList.remove("matched");
+      });
+    }
+    flipCard(card) {
+      if (this.canFlipCard(card)) {
+       
+        this.totalClicks ++;
+        this.ticker.innerText = this.totalClicks;
+        card.classList.add("visible");
+        if (this.cardToCheck) 
+        this.checkForCardMatch(card);
+          else
+          this.cardToCheck = card;
+      }
+      }
+      checkForCardMatch(card) {
+        if (this.getCardType(card) === this.getCardType(this.cardToCheck))
+        this.cardMatch(card, this.cardToCheck);
+        else 
+        this.cardMisMatch(card, this.cardToCheck);
+        this.cardToCheck = null;
+       }
+       cardMatch(card1, card2) {
+        this.matchedCards.push(card1);
+        this.matchedCards.push(card2);
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+      
+        if(this.matchedCards.length === this.cardsArray.length);
+        this.victory();
+    }
+      cardMisMatch(card1, card2) {
+        this.busy = true; 
+        setTimeout(() => {
+          card1.classList.remove("visible");
+          card2.classList.remove("visible");
+          this.busy = false;
+        }, 1000);
+      }
+      getCardType(card) {
+        return card.getElementsByClassName("card-value")[0].src;
+      }
+      startCountDown() {
+        return setInterval(() => {
+          this.timeRemaining--;
+          this.timer.innerText = this.timeRemaining;
+          if(this.timeRemaining === 0)
+            this.gameOver();
+      }, 1000);
+    }
   
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
-    return;
-  }
-
-  secondCard = this;
-  this.ticker.innertext = this.totalClicks;
-  checkForMatch();
-}
-
-function checkForMatch() {
-  if (firstCard.dataset.framework === secondCard.dataset.framework) {
-    disableCards();
-    return;
-  }
-
-  unflipCards();
-}
-
-function disableCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
-
-  resetBoard();
-}
-
-function unflipCards() {
-  lockBoard = true;
-  setTimeout(
-    () => {
-      firstCard.classList.remove("flip");
-      secondCard.classList.remove("flip");
-
-      resetBoard();
-    },1500
-  );
-}
-
-function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
-}
-
- (function shuffle() {
-  cards.forEach((card) => {
-    let ramdomPos = Math.floor(Math.random() * 12);
-    card.style.order = ramdomPos;
-  });
-})();
-
-cards.forEach((card) => card.addEventListener("click", flipCard));
-
 
 // Game levels 
-const levels = {
-    1: easy,
-    2: medium,
-    3: hard,
 }
-
 
 // Start game function
 

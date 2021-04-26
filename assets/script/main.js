@@ -127,6 +127,7 @@ hard = [{
     alt: "Floodhest",
 }];
 
+
 //Define variable and get the DOM
 
 let row = document.querySelector(".row");
@@ -137,8 +138,21 @@ let moves = 0;
 let matched = []
 let defaultAltId = [];
 let defaultAltSelected = [];
-let clicks = 0;
-let totalTime = 0;
+
+
+// Code snippet from  PortExe https://www.youtube.com/watch?v=3uuQ3g92oPQ&t=585s
+
+class MemoryGame {
+      constructor(totalTime, cards) {
+          this.cardsArray = cards;
+          this.totalTime = totalTime;
+          this.timeRemaining = totalTime;
+          this.timer = document.getElementById('time-remaining');
+          this.ticker = document.getElementById('flips');
+
+      }
+
+}
 
 
 //Shuffle function
@@ -155,6 +169,8 @@ function shuffle(array) {
     }
     return array;
 }
+
+
 // Flip function, code snipped from https://medium.com/free-code-camp/vanilla-javascript-tutorial-build-a-memory-game-in-30-minutes-e542c4447eae
 
 const cards = document.querySelectorAll(".memory-card");
@@ -167,7 +183,7 @@ function flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
   this.classList.add("flip");
-
+  
   if (!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
@@ -175,7 +191,7 @@ function flipCard() {
   }
 
   secondCard = this;
-
+  this.ticker.innertext = this.totalClicks;
   checkForMatch();
 }
 
@@ -203,9 +219,7 @@ function unflipCards() {
       secondCard.classList.remove("flip");
 
       resetBoard();
-    },
-
-    1500
+    },1500
   );
 }
 
@@ -214,7 +228,7 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
+ (function shuffle() {
   cards.forEach((card) => {
     let ramdomPos = Math.floor(Math.random() * 12);
     card.style.order = ramdomPos;
@@ -223,6 +237,15 @@ function resetBoard() {
 
 cards.forEach((card) => card.addEventListener("click", flipCard));
 
+
+// Game levels 
+const levels = {
+    1: easy,
+    2: medium,
+    3: hard,
+}
+
+
 // Start game function
 
 function startGame() {
@@ -230,8 +253,12 @@ function startGame() {
   alert('1234');
   document.getElementsByClassName('.row').checked = true;
 
-  const shuffleDefaultImg = document
-  
+    this.cardToCheck = null;
+    this.totalClicks = 0;
+    this.timeRemaining = this.totalTime;
+    this.matchedCards = [];
+    this.busy = true;
+    
     level = GetSelectedLevel();
     switch (level) {
         case "easy":
